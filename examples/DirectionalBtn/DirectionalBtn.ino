@@ -11,6 +11,7 @@ TFT_eSprite arrowSprite = TFT_eSprite(&tft);
 TFT_eSprite background = TFT_eSprite(&tft);
 TFT_eSprite arrowRotatedSprite = TFT_eSprite(&tft);
 
+#define backlightPin 0
 #define selectBtn 4
 #define upBtn 5
 #define downBtn 9
@@ -26,6 +27,8 @@ void setup()
   pinMode(downBtn, INPUT_PULLUP);
   pinMode(leftBtn, INPUT_PULLUP);
   pinMode(rightBtn, INPUT_PULLUP);
+  pinMode(backlightPin, OUTPUT);
+  analogWrite(backlightPin, 128); // Set to 50% brightness, lower value = lower brightness
 
   tft.init();
   tft.setSwapBytes(true);
@@ -38,6 +41,7 @@ void setup()
   arrowSprite.setSwapBytes(true);
   arrowSprite.setPivot(24, 24);
   arrowRotatedSprite.createSprite(48, 48);
+
   Serial.println("Started!");
 }
 
