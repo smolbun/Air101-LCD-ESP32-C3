@@ -1,15 +1,20 @@
 #include <Arduino.h>
-#include <TFT_eSPI.h> 
+#include <TFT_eSPI.h>
 #include <SPI.h>
 
 #define WIDTH 160
 #define HEIGHT 80
+
+#define backlightPin 0
 
 TFT_eSPI tft = TFT_eSPI(); // Pins defined in Setup_Air101LCD_LuatOS_ESP32C3.h
 TFT_eSprite disbuff = TFT_eSprite(&tft);
 
 void setup()
 {
+  pinMode(backlightPin, OUTPUT);
+  analogWrite(backlightPin, 128); // Set to 50% brightness, lower value = lower brightness
+
   tft.init();
   tft.invertDisplay(true);
   tft.setRotation(3);
